@@ -136,6 +136,8 @@
             // chkPossuiFilhos
             // 
             chkPossuiFilhos.AutoSize = true;
+            chkPossuiFilhos.Checked = true;
+            chkPossuiFilhos.CheckState = CheckState.Indeterminate;
             chkPossuiFilhos.Location = new Point(12, 279);
             chkPossuiFilhos.Name = "chkPossuiFilhos";
             chkPossuiFilhos.Size = new Size(99, 19);
