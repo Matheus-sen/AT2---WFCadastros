@@ -8,16 +8,18 @@ namespace AT2_WFCadastroPessoa
 {
     public class Pessoa
     {
-        public Pessoa(int codigo, string? cpf, string? nomeCompleto, string? email, string? dddTelefone, string? tipoTelefone, bool possuiFilhos)
+        public Pessoa(int codigo, string? cpf, string? nomeCompleto, string? email, string? telefone, string ddd, string? tipoTelefone, bool possuiFilhos)
         {
             Codigo = codigo;
             Cpf = cpf;
             NomeCompleto = nomeCompleto;
             Email = email;
-            DddTelefone = dddTelefone;
+            Telefone = telefone;
+            Ddd = ddd;
             TipoTelefone = tipoTelefone;
             PossuiFilhos = possuiFilhos;
         }
+
         public Pessoa()
         {
 
@@ -30,7 +32,8 @@ namespace AT2_WFCadastroPessoa
         public string? Cpf { get; set; }
         public string? NomeCompleto { get; set; }
         public string? Email { get; set; }
-        public string? DddTelefone { get; set; }
+        public string? Telefone { get; set; }
+        public string? Ddd { get; set; }
         public string? TipoTelefone { get; set; }
         public bool PossuiFilhos { get; set; }
 

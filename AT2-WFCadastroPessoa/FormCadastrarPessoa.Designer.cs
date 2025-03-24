@@ -66,11 +66,13 @@
             // 
             // mtbCpf
             // 
+            mtbCpf.CutCopyMaskFormat = MaskFormat.ExcludePromptAndLiterals;
             mtbCpf.Location = new Point(140, 32);
             mtbCpf.Mask = "000.000.000-00";
             mtbCpf.Name = "mtbCpf";
             mtbCpf.Size = new Size(119, 23);
             mtbCpf.TabIndex = 0;
+            mtbCpf.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
             // 
             // lblCpf
             // 
@@ -115,6 +117,7 @@
             // 
             // mtbDddTelefone
             // 
+            mtbDddTelefone.CutCopyMaskFormat = MaskFormat.ExcludePromptAndLiterals;
             mtbDddTelefone.Location = new Point(12, 218);
             mtbDddTelefone.Mask = "(00)00000-0000";
             mtbDddTelefone.Name = "mtbDddTelefone";

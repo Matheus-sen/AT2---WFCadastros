@@ -41,12 +41,13 @@ namespace AT2_WFCadastroPessoa
                 .Replace(" ", "")
                 .Replace("-", "");
 
+
             if (string.IsNullOrEmpty(mtbCpf.Text))
             {
                 Erro("Campo CPF não pode estar Vazio!");
                 return;
             }
-            ////Verifica 
+
             else if (string.IsNullOrEmpty(txtNomeCompleto.Text))
             {
                 Erro("Campo Nome Completo não pode estar Vazio!");
@@ -57,7 +58,7 @@ namespace AT2_WFCadastroPessoa
                 Erro("Campo Email não pode estar Vazio!");
                 return;
             }
-            ////Verifica 
+
             else if (string.IsNullOrEmpty(semMaskTelefone))
             {
                 Erro("Campo Telefone não pode estar Vazio!");
@@ -70,7 +71,9 @@ namespace AT2_WFCadastroPessoa
                 p1.Cpf = mtbCpf.Text;
                 p1.NomeCompleto = txtNomeCompleto.Text;
                 p1.Email = txtEmail.Text;
-                p1.DddTelefone = mtbDddTelefone.Text;
+                p1.Ddd = semMaskTelefone.Substring(0, 2);
+                p1.Telefone = semMaskTelefone.Substring(2);
+
 
                 if (rdbPessoal.Checked)
                 {
