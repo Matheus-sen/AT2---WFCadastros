@@ -16,7 +16,7 @@ namespace AT2_WFCadastroPessoa
         {
             InitializeComponent();
         }
-        private void LimparFormulario()
+        private void LimparFormulario() //Método para limpar o formulário, utilizado no meu caso no final do código.
         {
             mtbCpf.Clear();
             txtNomeCompleto.Clear();
@@ -30,18 +30,18 @@ namespace AT2_WFCadastroPessoa
 
         public void Erro(string mensagem)
         {
-            MessageBox.Show(mensagem, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(mensagem, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error); //Método para indicar erro em determinado ponto que seja preciso. Puxando apenas pelo seu nome "Erro".
         }
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-            string semMaskTelefone = mtbDddTelefone.Text
+            string semMaskTelefone = mtbDddTelefone.Text //Tira a Máscara do preenchimento, não contando como string ou texto digitado pelo usuário, invalidando em caso de não digitar número algum no DDDTelefone.
                 .Replace("(", "")
                 .Replace(")", "")
                 .Replace(" ", "")
                 .Replace("-", "");
 
-
+            //Verifica os campos vazios.
             if (string.IsNullOrEmpty(mtbCpf.Text))
             {
                 Erro("Campo CPF não pode estar Vazio!");
@@ -66,15 +66,27 @@ namespace AT2_WFCadastroPessoa
             }
             else
             {
-                Pessoa p1 = new Pessoa();
+                //Verifica se o CPF já foi cadastrado, percorrendo a lista com foreach.
+                foreach (Pessoa p2 in Pessoa.ListaPessoas)
+                {
+                    if (mtbCpf.Text == p2.Cpf)
+                    {
+                        Erro("CPF já cadastrado!!");
+                        mtbCpf.Clear();
+                        return;
+                    }
+                }
+
+                Pessoa p1 = new Pessoa(); // cadastra uma nova pessoa, desde que a condição anterior (foreach) não seja verdadeira.
                 p1.Codigo = Convert.ToInt32(txtCodigo.Text);
                 p1.Cpf = mtbCpf.Text;
                 p1.NomeCompleto = txtNomeCompleto.Text;
                 p1.Email = txtEmail.Text;
-                p1.Ddd = semMaskTelefone.Substring(0, 2);
-                p1.Telefone = semMaskTelefone.Substring(2);
+                p1.Ddd = semMaskTelefone.Substring(0, 2); //Puxa somente os números da posição 0 e 1, nesse caso apenas os dois primeiros números;
+                p1.Telefone = semMaskTelefone.Substring(2); //puxa todos os números da posição 2 em diante;
 
 
+                //Verifica qual RadioButton foi selecionado no Form e verifica se está preenchido no "else";
                 if (rdbPessoal.Checked)
                 {
                     p1.TipoTelefone = "Pessoal";
@@ -93,28 +105,30 @@ namespace AT2_WFCadastroPessoa
                     return;
                 }
 
+
+                //Verifica se a CheckBox está marcando se possui filhos, se não possui filhos ou se foi marcada ou não.
                 if (chkPossuiFilhos.CheckState == CheckState.Checked)
                 {
-                    p1.PossuiFilhos = true;
+                    p1.PossuiFilhos = true;//SE marcado, retorna true "Verdadeiro" a opção que possui filhos
                 }
                 else if (chkPossuiFilhos.CheckState == CheckState.Unchecked)
                 {
-                    p1.PossuiFilhos = false;
+                    p1.PossuiFilhos = false;//SE não estiver marcado, retorna false "falso" a opção que possui filhos
                 }
-                else
+                else // Caso nenhuma das opções:
                 {
                     Erro("Faltou marcar se tem Filhos!");
                     return;
                 }
 
-                Pessoa.ListaPessoas.Add(p1);
+                Pessoa.ListaPessoas.Add(p1); //Adiciona Pessoa (p1) na lista de Pessoas.
 
                 MessageBox.Show("Cadastro realizado com sucesso!", "Info",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBoxButtons.OK, MessageBoxIcon.Information); //Mensagem de cadastro realizado.
 
-                txtCodigo.Text = (Pessoa.ListaPessoas.Count + 1).ToString();
+                txtCodigo.Text = (Pessoa.ListaPessoas.Count + 1).ToString(); //Aumenta o códido incrementado +1 somado no anterior.
 
-                LimparFormulario();
+                LimparFormulario(); //Limpa o formulário para novo cadsatramento ou finalização.
 
             }
 
@@ -122,14 +136,14 @@ namespace AT2_WFCadastroPessoa
 
         private void FormCadastrarPessoa_Load(object sender, EventArgs e)
         {
-            txtCodigo.Text = (Pessoa.ListaPessoas.Count + 1).ToString();
-            txtCodigo.Enabled = false;
-            chkPossuiFilhos.CheckState = CheckState.Indeterminate;
+            txtCodigo.Text = (Pessoa.ListaPessoas.Count + 1).ToString(); //Ao carregar o formulário, incrementa +1, sendo assim o primeiro usuário é 0+1 = 1;
+            txtCodigo.Enabled = false; //Deixa o txtBox sem alteração pelo usuário
+            chkPossuiFilhos.CheckState = CheckState.Indeterminate;//Deixa a seleção indeterminada da opção possui filhos, sendo possível validar se foi ou não preenchida.
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Close(); //Fecha o programa
         }
     }
 }

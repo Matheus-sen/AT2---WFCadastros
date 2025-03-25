@@ -37,14 +37,14 @@
             dgvListaPessoas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvListaPessoas.Location = new Point(12, 12);
             dgvListaPessoas.Name = "dgvListaPessoas";
-            dgvListaPessoas.Size = new Size(344, 204);
+            dgvListaPessoas.Size = new Size(465, 204);
             dgvListaPessoas.TabIndex = 0;
             // 
             // FormListagem
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(368, 228);
+            ClientSize = new Size(489, 228);
             Controls.Add(dgvListaPessoas);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
